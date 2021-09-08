@@ -20,7 +20,7 @@ def translate(w):
     if w in data: # Ask if the word is into the data
         return data[w]
     elif len(get_close_matches(w, data.keys())) > 0: # If the word is not there, it is evaluated if a similar word exists.
-        question = input("Did you mean " + get_close_matches(w, data.keys())[0] +" instead? Enter Y if Yes, or N if not: " ) # User confirm the word
+        question = input("Did you mean " + get_close_matches(w, data.keys())[0] +" instead? Enter Y if Yes, or N if not: " ) # User confirm the word 
         if question == "Y":
             return data[get_close_matches(w, data.keys())[0]]
         elif question == "N":
@@ -30,5 +30,17 @@ def translate(w):
     else:
         return "The word does not exist. Please double check it."
  
-word = input("Enter word: ")
-print(translate(word))
+
+if __name__ == '__main__':
+    word = input("Enter word: ")
+    output = translate(word)
+    print("RESULTS:")
+    if type(output) == list:
+        count = 1
+        for item in output:
+            print(str(count) + ": " + item)
+            count = count + 1
+    else:         
+        print(output)
+
+    
